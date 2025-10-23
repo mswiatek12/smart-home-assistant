@@ -1,0 +1,29 @@
+﻿Smart Thermostat: Troubleshooting and Common Issues
+This guide provides solutions for the most frequent issues encountered with your Smart Thermostat, including connectivity drops, inaccurate readings, and scheduling errors.
+1. Connectivity and Network Issues
+Symptom: The thermostat is offline in the mobile app, or voice commands fail.
+Issue
+	Potential Cause
+	Solution
+	"Offline" Status
+	Weak Wi-Fi signal or network change.
+	1. Confirm your home router is powered on and functioning. 2. Verify the thermostat's Wi-Fi network details are correct in the mobile app settings. 3. If issues persist, temporarily move the router closer or use a Wi-Fi extender.
+	Intermittent Drops
+	Network congestion or firewall blocking port 8883.
+	Check your router settings to ensure port 8883 (standard for MQTT/IoT communication) is open. Restarting both the router and the thermostat often resolves minor network glitches.
+	Cannot Reconnect
+	Incorrect password or conflicting IP address.
+	Forget the network in the thermostat's settings, and then reconnect using the correct password. If a static IP was assigned, try switching back to DHCP (automatic) to rule out conflicts.
+	2. Temperature and Reading Accuracy
+Symptom: The displayed temperature seems wrong, or the system runs too much/too little.
+Issue 2.1: Inaccurate Temperature Reading
+* Cause: The thermostat is placed on an outside wall, near a drafty door, or in direct sunlight.
+* Solution: Allow 30 minutes for the reading to stabilize. If the issue remains, the thermostat's placement may be poor. While relocation isn't always possible, consider using a remote sensor if your model supports it, placing the sensor in the center of the room you want to control.
+Issue 2.2: System Short-Cycling (Runs briefly, then stops)
+* Cause: This is often an issue with the HVAC system itself, but can be exacerbated by thermostat settings.
+* Solution: Check the Cycle Rate setting (sometimes called Swing or Differential) in the advanced settings menu. Increasing the minimum temperature change required (e.g., from 0.5°F to 1.0°F) before the system turns on can stop short-cycling.
+3. Scheduling and Automation Failures
+Symptom: The schedule does not activate at the set time, or "Home" mode stays active when everyone leaves.
+* Time Zone Error: Ensure the thermostat's time zone setting in the mobile app matches your current location. If the system's time is off by exactly 1, 2, or 3 hours, this is the likely cause.
+* Conflicting Rules: If you are using IFTTT, Alexa Routines, or Geofencing (as described in the Integration Tips Canvas) alongside the internal schedule, one rule may be overriding another. Disable all third-party automation rules temporarily to confirm that the internal schedule works correctly.
+* Power Save Override: Check if a "Power Saving" or "Energy Saver" feature is active. This feature often overrides programmed schedules if it predicts significant savings, even if it deviates from your setpoints. Disable the feature to test the schedule.

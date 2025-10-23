@@ -1,0 +1,35 @@
+﻿Smart Doorbell: Troubleshooting and Common Issues
+This guide provides solutions for the most frequent issues encountered with your Smart Doorbell, including connectivity failure, poor video quality, and inconsistent motion detection.
+1. Connectivity and Live View Issues
+Symptom: The doorbell is offline in the mobile app, or the live view takes too long to load.
+Issue
+	Potential Cause
+	Solution
+	"Offline" Status
+	Weak Wi-Fi signal or network change.
+	1. Check the doorbell's connection status light (usually blinking red/amber). 2. Ensure your Wi-Fi router is functioning. 3. If signal is poor, consider installing a Wi-Fi repeater or moving the router closer to the door.
+	Slow Live View
+	Low upload speed from your home internet.
+	Test your internet's upload speed (should be > 2 Mbps for HD streaming). Temporarily set the doorbell's video quality to Standard Definition in the app settings.
+	Delayed Notifications
+	Mobile app background restrictions or battery saver mode.
+	Ensure the mobile app is exempt from battery optimization settings on your phone to allow real-time push notifications.
+	2. Motion Detection Problems
+Symptom: The doorbell records too many false alerts (cars, trees) or misses people entirely.
+Issue
+	Potential Cause
+	Solution
+	Too Many Alerts
+	Motion sensitivity is too high, or detection zones are too broad.
+	1. Adjust the Motion Sensitivity setting to "Low" or "Medium." 2. Use the Motion Zone feature in the app to exclude busy streets, tree branches, or neighboring property.
+	Missing People
+	Objects are moving too quickly, or the detection zone is too narrow.
+	1. Ensure the entire entryway is included in the motion zone. 2. For battery models, increasing the Detection Frequency may help, but will reduce battery life.
+	Night Vision Failure
+	IR light reflection off a nearby wall or object (e.g., hanging wreath).
+	Check the doorbell's field of view for reflective surfaces close to the lens. Try cleaning the lens, as smudges can cause IR blooming.
+	3. Power and Charging Issues
+Symptom: The battery is draining quickly, or the hardwired doorbell is not charging.
+* Rapid Battery Drain: If the doorbell is positioned in an area with high activity (lots of traffic) and the motion sensitivity is high, it will drain faster. Solution: Lower motion sensitivity and reduce the live-view length to conserve power.
+* Hardwired Not Charging: Your existing chime transformer may not provide enough voltage (minimum 16V AC is typically required). Solution: Have a qualified electrician confirm the transformer voltage. If it is too low, it will need to be replaced with a higher-rated one.
+* Cold Weather: Lithium batteries perform poorly in extreme cold. Solution: If temperatures are below freezing for extended periods, battery performance degradation is normal. Allow the battery to warm up before attempting a charge cycle.

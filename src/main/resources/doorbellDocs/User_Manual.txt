@@ -1,0 +1,55 @@
+Smart Doorbell: User Manual and Quick Start Guide
+
+This manual covers the essential steps for setting up, installing, and performing the initial configuration of your new Smart Doorbell.
+
+1. Package Contents Checklist
+
+Before starting the installation, please ensure all components are present:
+
+Smart Doorbell Unit (Camera/Chime)
+
+Mounting Bracket and Angle Wedge
+
+Security Screw and Pin
+
+Chime Kit (for hardwired installation)
+
+USB Charging Cable (for battery models)
+
+Installation Screws and Wall Anchors
+
+2. Physical Installation
+
+2.1 Battery-Powered Setup
+
+Charging: Fully charge the doorbell battery using the provided USB cable (allow 5-8 hours for a full charge).
+
+Mounting: Attach the mounting bracket to your door frame at a height of 48 inches (120 cm) using the screws and anchors.
+
+Secure: Clip the fully charged doorbell unit onto the bracket.
+
+Final Step: Insert the security screw at the bottom of the unit to prevent theft.
+
+2.2 Hardwired Setup (Existing Doorbell)
+
+Power Off: IMPORTANT: Turn off power to your existing doorbell chime at the circuit breaker.
+
+Wiring: Remove your old doorbell button and connect the existing wires to the two screw terminals on the back of the Smart Doorbell unit. Polarity does not matter.
+
+Chime Kit: Install the included chime kit inside your existing indoor chime box as instructed in the separate diagram.
+
+Power On: Restore power at the circuit breaker and allow 2-3 minutes for the doorbell to boot up.
+
+3. Initial Setup and Pairing
+
+Download App: Download and install the "Smart Home Assistant" mobile application.
+
+Create Account: Create a new user account and log in.
+
+Add Device: In the app, tap the + icon and select Smart Doorbell.
+
+Pairing Mode: The doorbell will enter pairing mode automatically (usually indicated by a blinking blue light). If not, press and hold the Reset Button for 5 seconds.
+
+Wi-Fi Connection: The app will guide you to select your 2.4 GHz Wi-Fi network and enter the password. Note that 5 GHz networks are not supported.
+
+Confirmation: Once connected, the doorbell will sound a tone and the LED will turn solid blue. You are ready to start customizing settings.

@@ -1,0 +1,39 @@
+Smart Home Assistant: Subscription Pricing Tiers
+
+This document details the current pricing and key features for all Smart Home Assistant cloud subscription plans. Prices are listed in USD and are subject to change.
+
+1. Basic Plan (Starter Tier)
+
+The Basic Plan is ideal for single-device users who require essential features and cloud backup.
+
+Price: $4.99 per month (or $49.90 annually, a 17% savings)
+
+Device Limit: 1 Smart Device (e.g., 1 Doorbell or 1 Thermostat)
+
+Cloud Storage: 7-Day Rolling History
+
+Key Features: Live View, Two-Way Talk, Standard Notifications
+
+2. Pro Plan (Standard Tier)
+
+The Pro Plan is designed for households with multiple devices and those who need longer video history retention.
+
+Price: $9.99 per month (or $99.90 annually, a 17% savings)
+
+Device Limit: Up to 5 Smart Devices
+
+Cloud Storage: 30-Day Rolling History
+
+Key Features: All Basic Features PLUS: Custom Motion Zones, Face Recognition, Priority Email Support
+
+3. Enterprise Plan (Advanced Tier)
+
+The Enterprise Plan supports whole-home integration and offers the maximum retention period and dedicated support.
+
+Price: Contact Sales for custom quote (typical starting price $29.99 per month)
+
+Device Limit: Unlimited Devices
+
+Cloud Storage: 60-Day Rolling History
+
+Key Features: All Pro Features PLUS: 24/7 Phone Support, Local Network API Access, Multi-User Profile Management

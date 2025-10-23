@@ -1,0 +1,41 @@
+Smart Home Assistant: Invoices and Receipts
+
+This document explains how to access your monthly invoices and annual receipts, and details what financial information is included in these documents.
+
+1. Accessing Monthly Invoices
+
+Invoices provide a detailed breakdown of your monthly subscription charges, usage, and any applicable taxes.
+
+Delivery: Invoices are automatically generated and emailed to the primary account holder's email address on the billing date each month.
+
+App Access: You can always find your last 12 months of invoices directly within the Billing History section of the Smart Home Assistant mobile application or web portal.
+
+Invoice Content: Each invoice includes:
+
+Invoice Number and Date
+
+Customer ID and Billing Address
+
+Detailed breakdown of services (e.g., Pro Plan Subscription)
+
+The total amount charged and payment method used
+
+Applicable tax rate (if any)
+
+2. Annual Receipts and Statements
+
+While invoices are generated monthly, annual subscription users will receive a single, comprehensive annual receipt upon renewal.
+
+Annual Receipt: This receipt confirms payment for the entire upcoming 12-month period and serves as the official proof of payment for tax or corporate reimbursement purposes.
+
+Downloading Receipts: Annual receipts are available for download in PDF format from the Billing History section alongside your monthly invoices.
+
+3. Resolving Invoice Discrepancies
+
+If you notice an incorrect charge or discrepancy on your invoice, please take the following steps:
+
+Compare the charge against the Pricing.txt document to confirm the standard rate for your plan.
+
+If an error is suspected, gather the Invoice Number and your Customer ID.
+
+Contact a Billing Specialist immediately through the official support channel for immediate review and resolution.

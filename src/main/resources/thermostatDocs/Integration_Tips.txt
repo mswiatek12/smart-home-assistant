@@ -1,0 +1,45 @@
+Smart Thermostat: Integration Tips and Best Practices
+
+This document provides quick tips for integrating your Smart Thermostat with popular third-party services, ensuring seamless home automation and maximum energy savings.
+
+1. Connecting to Voice Assistants (Alexa & Google Home)
+
+To enable voice control, ensure your thermostat is connected to the cloud and you have the necessary mobile app installed.
+
+Setup Tip:
+
+In the Alexa or Google Home app, search for the Smart Thermostat Skill (or Action).
+
+Use your Smart Thermostat login credentials to link the accounts.
+
+Once linked, try a simple command, such as: "Alexa, set the living room temperature to 72 degrees."
+
+Troubleshooting: If the assistant cannot find the device, try renaming the thermostat in the Smart Thermostat mobile app (e.g., from "Thermostat-01" to "Living Room") and asking the assistant to Discover Devices again.
+
+2. Setting up Advanced Automations (IFTTT)
+
+For complex, cross-device automations (like "Turn off thermostat when a window sensor is opened"), use platforms like IFTTT (If This Then That).
+
+Rule Example:
+
+Trigger (IF): The Smart Lock detects that the front door is locked.
+
+Action (THEN THAT): Set the Smart Thermostat to Away mode and decrease the temperature by 5 degrees.
+
+Best Practice: Use IFTTT to set Geofencing rules. For instance, turn the heat up 15 minutes before the last person arrives home based on their phone location. This maximizes comfort while minimizing heating time.
+
+3. Local Network Control and API Access
+
+For advanced users or custom home automation systems (like Home Assistant or OpenHAB), the thermostat supports local network control via its secure API.
+
+API Access Tip:
+
+Navigate to the Developer Settings in the Smart Thermostat mobile app.
+
+Generate a secure, single-use API Key. Warning: Treat this key as a password.
+
+The local endpoint is available at http://[THERMOSTAT_IP]:8080/api/v1/status.
+
+Ensure your automation hub is on the same subnet as the thermostat for reliable local communication.
+
+Rate Limit: The local API limits requests to 60 per minute to preserve battery life and network stability. Do not exceed this limit.

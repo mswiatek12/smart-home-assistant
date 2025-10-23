@@ -1,0 +1,35 @@
+Smart Home Assistant: Refund and Cancellation Policy
+
+This document outlines the policy for processing subscription refunds and the standard timelines associated with these requests.
+
+1. Eligibility for Full Refund
+
+A customer is eligible for a full refund of their subscription payment (monthly or annual) only if all of the following conditions are met:
+
+The cancellation request is submitted within 30 days of the initial subscription purchase date OR a subsequent annual renewal date.
+
+The customer has not already received a previous refund for the same service within the last 12 months.
+
+The request is initiated through the official support channel (via the app or by speaking to a Billing Specialist).
+
+Note: We do not offer partial or prorated refunds for cancellations made after the 30-day eligibility window.
+
+2. Refund Processing Timeline
+
+Once a refund request has been submitted and approved by our billing department, the following timelines apply:
+
+Internal Processing: The request is processed internally within 3 to 5 business days. During this time, the support ticket will be marked as "Processing."
+
+Credit Appearance: The funds typically take an additional 5 to 10 business days to appear back in the customer's bank account or credit card statement. This timeline is dependent on the customer's financial institution.
+
+Total Time: Customers should expect the full refund process to take between 8 and 15 business days from the date of approval.
+
+3. How to Submit a Refund Request
+
+To ensure accurate and timely processing, customers must submit a refund request by providing:
+
+The associated Customer ID or email address.
+
+The Transaction ID or date of the charge being disputed.
+
+A brief summary of the Reason for Cancellation/Refund.

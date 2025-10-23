@@ -1,0 +1,41 @@
+Smart Doorbell: Integration Tips and Best Practices
+
+This document provides quick tips for integrating your Smart Doorbell with popular third-party services and maximizing its utility within a smart home ecosystem.
+
+1. Connecting to Voice Assistants (Alexa & Google Home)
+
+Linking your doorbell to a voice assistant enables announcements when the button is pressed and allows for hands-free live view streaming to compatible smart displays.
+
+Setup Tip:
+
+Announcements: In the Alexa or Google Home app, make sure the doorbell's camera and chime function are enabled within the settings after linking the "Smart Doorbell" skill/action. This allows the assistant to announce, "Someone is at the front door."
+
+Live View Streaming: Use commands like, "Hey Google, show me the front door" to cast the live feed to a Nest Hub, Echo Show, or other smart display.
+
+Best Practice: Create a voice routine (e.g., "Goodnight") that automatically disables motion detection alerts while leaving the press button announcement active, preventing late-night phone pings.
+
+2. Using Automation Platforms (IFTTT / Zapier)
+
+Use external automation services to link doorbell events to non-standard actions, creating custom security and convenience routines.
+
+Automation Example: Lights On
+
+Trigger (IF): Smart Doorbell detects motion (especially at night).
+
+Action (THEN THAT): Turn on the outdoor smart porch light for 5 minutes.
+
+Automation Example: Silent Mode
+
+Trigger (IF): Your phone connects to a specific network (e.g., "Work Wi-Fi").
+
+Action (THEN THAT): Mute the doorbell's push notifications until you return home.
+
+3. Storage and Ecosystem Integration
+
+Your doorbell records video to an internal or cloud storage service. Integration ensures this data is managed properly.
+
+Cloud Synchronization: If you subscribe to a cloud storage plan, verify that your account is properly linked in the mobile app settings to prevent gaps in video history.
+
+Local Storage (If Applicable): If your model uses a MicroSD card, ensure you format it annually to maintain optimal read/write speeds and prevent corruption.
+
+Smart Lock Integration: Configure a rule that, upon detecting a familiar person (if face recognition is enabled), automatically unlocks the smart lock after a verbal confirmation.
