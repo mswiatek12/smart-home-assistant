@@ -10,10 +10,8 @@
 .env
 application-*.properties
 application.properties
-/src/main/resources/application-*.properties
 src/main/resources/application.properties
-
-!/src/main/resources/application-example.properties
+src/main/java/com.smartaink.smart_home_assistant
 
 .DS_Store
 Thumbs.db
