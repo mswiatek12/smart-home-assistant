@@ -28,13 +28,13 @@ Once the application starts, the following steps happen in order:
 - Each file is tokenized and split into **text segments**, which are later used for semantic search.
 
 ### 2. Embedding Creation
-- [EmbeddingService](src/main/java/com/smartaink/smart_home_assistant/service/EmbeddingService.java) generates embeddings for each text segment.
+- [EmbeddingService](src/main/java/com/smartaink/smart_home_assistant/llm/EmbeddingService.java) generates embeddings for each text segment.
 - This process runs in a background thread using the OpenAI embedding model (`text-embedding-3-large`).
 - Separate **vector stores** are created for Technical Agent (Agent A) and Billing Agent (Agent B), storing the embeddings for semantic search.
 
 ### 3. Prompt Handling / Agent Routing
 - The application is ready to accept user prompts through the UI.
-- Each prompt triggers a **POST request** to the controller ([ChatController](src/main/java/com.smartaink.smart_home_assistant/controller/ChatController.java)), which passes it to [ChatService](src/main/java/com.smartaink.smart_home_assistant/service/ChatService.java).
+- Each prompt triggers a **POST request** to the controller ([ChatController](src/main/java/com/smartaink/smart_home_assistant/controller/ChatController.java)), which passes it to [ChatService](src/main/java/com/smartaink/smart_home_assistant/service/ChatService.java).
 - [RouterAgent](src/main/java/com/smartaink/smart_home_assistant/service/RouterAgent.java) evaluates which agent should handle the query by comparing the prompt embedding with each agent’s vector store using **cosine similarity**.
 - If no agent is considered suitable, the system requests clarification from the user.
 
