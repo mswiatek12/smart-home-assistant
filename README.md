@@ -24,18 +24,18 @@ Persistent storage of vectors or session IDs was **not considered essential for 
 Once the application starts, the following steps happen in order:
 
 ### 1. Document Loading
-- [DocumentLoader](src/main/java/com.smartaink.smart_home_assistant/utils/DocumentLoader.java) reads documents from directories specified in the application properties.
+- [DocumentLoader](src/main/java/com/smartaink/smart_home_assistant/utils/DocumentLoader.java) reads documents from directories specified in the application properties.
 - Each file is tokenized and split into **text segments**, which are later used for semantic search.
 
 ### 2. Embedding Creation
-- [EmbeddingService](src/main/java/com.smartaink.smart_home_assistant/service/EmbeddingService.java) generates embeddings for each text segment.
+- [EmbeddingService](src/main/java/com/smartaink/smart_home_assistant/service/EmbeddingService.java) generates embeddings for each text segment.
 - This process runs in a background thread using the OpenAI embedding model (`text-embedding-3-large`).
 - Separate **vector stores** are created for Technical Agent (Agent A) and Billing Agent (Agent B), storing the embeddings for semantic search.
 
 ### 3. Prompt Handling / Agent Routing
 - The application is ready to accept user prompts through the UI.
 - Each prompt triggers a **POST request** to the controller ([ChatController](src/main/java/com.smartaink.smart_home_assistant/controller/ChatController.java)), which passes it to [ChatService](src/main/java/com.smartaink.smart_home_assistant/service/ChatService.java).
-- [RouterAgent](src/main/java/com.smartaink.smart_home_assistant/service/RouterAgent.java) evaluates which agent should handle the query by comparing the prompt embedding with each agent’s vector store using **cosine similarity**.
+- [RouterAgent](src/main/java/com/smartaink/smart_home_assistant/service/RouterAgent.java) evaluates which agent should handle the query by comparing the prompt embedding with each agent’s vector store using **cosine similarity**.
 - If no agent is considered suitable, the system requests clarification from the user.
 
 ### 4. Agent Response Generation
@@ -45,8 +45,8 @@ Once the application starts, the following steps happen in order:
 
 
 ### 5. Multi-Turn Memory Handling
-- [LangChainConfig](src/main/java/com.smartaink.smart_home_assistant/config/LangChainConfig.java) defines a `ChatMemoryProvider` bean that creates a `MessageWindowChatMemory` for each session (`memoryId`) with a maximum of 10 messages stored.
-- [ChatModel](src/main/java/com.smartaink.smart_home_assistant/llm/ChatModel.java) interface handles LLM calls with `memoryId` and the user prompt (`@UserMessage`), ensuring conversation history is preserved across multiple turns.
+- [LangChainConfig](src/main/java/com/smartaink/smart_home_assistant/config/LangChainConfig.java) defines a `ChatMemoryProvider` bean that creates a `MessageWindowChatMemory` for each session (`memoryId`) with a maximum of 10 messages stored.
+- [ChatModel](src/main/java/com/smartaink/smart_home_assistant/llm/ChatModel.java) interface handles LLM calls with `memoryId` and the user prompt (`@UserMessage`), ensuring conversation history is preserved across multiple turns.
 - In the frontend ([app.js](src/main/resources/static/js/app.js)), a unique `sessionId` is generated **once per chat session** (e.g., via `crypto.randomUUID()`) when the user opens the chat.
 - It is sent as `memoryId` with each request, ensuring that the conversation history is preserved and tied to the same user session.
 
