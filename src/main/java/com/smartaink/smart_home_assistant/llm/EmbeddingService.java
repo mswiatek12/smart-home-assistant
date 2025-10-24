@@ -3,6 +3,8 @@ package com.smartaink.smart_home_assistant.llm;
 import com.smartaink.smart_home_assistant.utils.DocumentLoader;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.exception.HttpException;
+import dev.langchain4j.exception.InvalidRequestException;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingStore;
@@ -30,7 +32,7 @@ public class EmbeddingService {
     private String apiKey;
 
     @Value("${langchain4j.open-ai.embedding-model.model-name}")
-    private String modelName;
+    private String model;
 
 
     public EmbeddingService(DocumentLoader documentLoader) {
@@ -42,29 +44,37 @@ public class EmbeddingService {
 
     @PostConstruct
     public void init() {
-        this.embeddingModel = OpenAiEmbeddingModel.builder()
-                .apiKey(apiKey)
-                .modelName(modelName)
-                .build();
+        new Thread(() -> initEmbeddings()).start();
+    }
 
-        List<List<TextSegment>> tsegments = documentLoader.loadTechnicalDocuments();
-        for (List<TextSegment> segment : tsegments) {
-            List<Embedding> embeddings = embeddingModel.embedAll(segment).content();
-            EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
-            embeddingStore.addAll(embeddings, segment);
+    private void initEmbeddings() {
+        try {
+            this.embeddingModel = OpenAiEmbeddingModel.builder()
+                    .apiKey(apiKey)
+                    .modelName(model)
+                    .build();
+            List<List<TextSegment>> tsegments = documentLoader.loadTechnicalDocuments();
+            for (List<TextSegment> segment : tsegments) {
+                List<Embedding> embeddings = embeddingModel.embedAll(segment).content();
+                EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+                embeddingStore.addAll(embeddings, segment);
 
-            technicalEmbeddingStores.add(embeddingStore);
-        }
+                technicalEmbeddingStores.add(embeddingStore);
+            }
 
-        ///TO DO: DELETE CODE DUPLICATION BELOW
+            ///TO DO: DELETE CODE DUPLICATION BELOW
 
-        List<List<TextSegment>> bsegments = documentLoader.loadBillingDocuments();
-        for (List<TextSegment> segment : bsegments) {
-            List<Embedding> embeddings = embeddingModel.embedAll(segment).content();
-            EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
-            embeddingStore.addAll(embeddings, segment);
+            List<List<TextSegment>> bsegments = documentLoader.loadBillingDocuments();
+            for (List<TextSegment> segment : bsegments) {
+                List<Embedding> embeddings = embeddingModel.embedAll(segment).content();
+                EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+                embeddingStore.addAll(embeddings, segment);
 
-            billingEmbeddingStores.add(embeddingStore);
+                billingEmbeddingStores.add(embeddingStore);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

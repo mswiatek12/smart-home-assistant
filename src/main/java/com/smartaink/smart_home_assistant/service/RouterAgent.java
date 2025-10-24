@@ -14,11 +14,16 @@ public class RouterAgent {
     }
 
     public String route(String sessionId, String userPrompt) {
+        if(agents.isEmpty() || agents == null){
+            return "No agent is available";
+        }
         for (ConversationalAgent agent : this.agents) {
             if (agent.canHelp(userPrompt)) {
                 return agent.answer(sessionId, userPrompt);
             }
         }
-        return "Please specify.";
+        return "I’m not sure I understand your request. " +
+                "Could you specify what device or feature you need help with, " +
+                "or describe the problem in more detail?";
     }
 }

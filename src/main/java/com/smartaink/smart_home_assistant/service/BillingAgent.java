@@ -50,7 +50,7 @@ public class BillingAgent implements ConversationalAgent {
             }
         }
 
-        return bestScore > 0.75;
+        return bestScore > 0.5;
     }
 
     @Override

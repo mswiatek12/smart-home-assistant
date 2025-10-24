@@ -1,6 +1,5 @@
 package com.smartaink.smart_home_assistant.service;
 
-import com.smartaink.smart_home_assistant.llm.ChatModel;
 import org.springframework.stereotype.Service;
 
 @Service
