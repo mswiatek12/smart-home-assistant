@@ -35,7 +35,6 @@ h1 {
 
 
 .chat-box {
-    border: 1px solid black;
     flex: 1;
     padding: 10px;
     overflow-y: auto;

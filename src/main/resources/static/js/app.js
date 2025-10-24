@@ -2,6 +2,13 @@ const chatBox = document.getElementById('chat-box');
 const promptInput = document.getElementById('prompt');
 const sendButton = document.getElementById('send-request');
 
+let sessionId = localStorage.getItem('sessionId');
+
+if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem('sessionId', sessionId);
+}
+
 function addMessage(text, sender) {
     const msg = document.createElement('div');
     msg.className = 'message ' + sender;
@@ -19,7 +26,7 @@ async function sendMessage() {
     const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ sessionId: '1', prompt })
+        body: JSON.stringify({ sessionId: localStorage.getItem('sessionId'), prompt })
     });
     const data = await response.text();
     addMessage(data, 'bot');
