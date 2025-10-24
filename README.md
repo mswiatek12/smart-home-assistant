@@ -14,10 +14,10 @@ More detailed technical information and architectural decisions can be found in 
 
 ### :warning: Disclaimer
 
+This implementation focuses on demonstrating the core functionality and mechanisms required by the assignment in a clean and transparent way.
+The documentation for Smart Doorbell and Smart Thermostat was generated with ChatGPT-5 to simulate realistic device manuals and troubleshooting materials.
 For this project, I chose **not to use a database**. The focus was on implementing the **core functionality and proper mechanisms**.
-Persistent storage of vectors or session IDs was **not considered essential for fulfilling the assignment requirements**, but it would be a natural next step for extending the application and improving scalability.
-
-
+Persistent storage of vectors or session IDs was **not considered essential for fulfilling the assignment requirements**, but it would be a natural next step for building the application and improving scalability.
 
 # System Overview
 
