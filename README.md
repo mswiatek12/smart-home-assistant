@@ -124,3 +124,4 @@ curl -X POST http://localhost:8080/api/chat \
 - :warning: Currently, the assistant only supports **Smart Doorlock** and **Smart Thermostat** devices. Other devices are not integrated yet.
 - :warning: No list with historical chats with agent(like e.g. in ChatGPT). If we open new session new sessionID is generated losing previous.
 - :warning: Multi-turn conversation memory is **stored in-memory(not-DB)** and resets after every application restart. This means chat history is lost when the server is stopped.
+- :warning: The refund form template is provided as a message from the chatbot for the user to fill out — it is not sent via email or any other channel.
