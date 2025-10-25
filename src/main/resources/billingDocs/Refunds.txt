@@ -33,3 +33,29 @@ The associated Customer ID or email address.
 The Transaction ID or date of the charge being disputed.
 
 A brief summary of the Reason for Cancellation/Refund.
+
+4. Refund Request Template
+
+   If you’d like to request a refund, please fill in the following details and send this form to our Billing Support team via the in-app chat or email:
+
+   --- REFUND REQUEST FORM ---
+
+   Customer Name: __________________________
+   Customer ID (or Email): __________________________
+   Transaction ID (or Date of Charge): __________________________
+   Subscription Type (Monthly / Annual): __________________________
+   Date of Purchase or Renewal: __________________________
+   Reason for Refund Request:
+   ____________________________________________________
+   ____________________________________________________
+
+   I confirm that this request is being made within 30 days of purchase or renewal, and I have not received another refund for this service in the past 12 months.
+
+   Signature (optional): __________________________
+   Date: __________________________
+
+   --- END OF FORM ---
+
+
+   💡 After submitting the completed form, our billing department will review your request.
+   Refunds are typically processed within 3–5 business days, and funds appear in your account within 8–15 business days total, depending on your bank.
