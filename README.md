@@ -1,6 +1,6 @@
 # Hello! :bowtie:
 ### Dear recruiter,
-This repository contains my implementation for a smart home assistant coding task. The goal was to create a conversational AI that helps users manage and maintain smart home devices, specifically a Smart Doorlock and a Smart Thermostat.
+This repository contains my implementation for a coding task. I decided that the requirements could be best fulfilled by implementing a system of smart home devices, so I designed and developed a Smart Home Assistant that manages a Smart Doorlock and a Smart Thermostat.
 
 The assistant consists of two collaborating agents:
 
