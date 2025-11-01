@@ -6,4 +6,6 @@ import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.spring.AiService;
 
 @AiService
-public interface ChatModel { Result<String> chat(@MemoryId String memoryId, @UserMessage String prompt); }
+public interface RouterAssistantModel {
+    Result<String> chat(@MemoryId String memoryId, @UserMessage String prompt);
+}

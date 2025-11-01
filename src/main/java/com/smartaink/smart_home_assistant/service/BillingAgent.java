@@ -1,6 +1,7 @@
 package com.smartaink.smart_home_assistant.service;
 
-import com.smartaink.smart_home_assistant.llm.ChatModel;
+import com.smartaink.smart_home_assistant.llm.BillingAssistantModel;
+import com.smartaink.smart_home_assistant.llm.TechnicalAssistantModel;
 import com.smartaink.smart_home_assistant.llm.EmbeddingService;
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
@@ -9,6 +10,7 @@ import dev.langchain4j.store.embedding.EmbeddingMatch;
 import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
 import dev.langchain4j.store.embedding.EmbeddingSearchResult;
 import dev.langchain4j.store.embedding.EmbeddingStore;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,14 +19,19 @@ import java.util.List;
 @Service
 public class BillingAgent implements ConversationalAgent {
 
-    private final ChatModel chatModel;
+    @Autowired
+    private final BillingAssistantModel billingAssistantModel;
     private final EmbeddingService embeddingService;
 
-    public BillingAgent(ChatModel chatModel,  EmbeddingService embeddingService) {
-        this.chatModel = chatModel;
+    public BillingAgent(BillingAssistantModel billingAssistantModel, EmbeddingService embeddingService) {
+        this.billingAssistantModel = billingAssistantModel;
         this.embeddingService = embeddingService;
     }
 
+    @Override
+    public String getName() {
+        return "BillingAgent";
+    }
 
     @Override
     public boolean canHelp(String userPrompt) {
@@ -50,7 +57,7 @@ public class BillingAgent implements ConversationalAgent {
             }
         }
 
-        return bestScore > 0.5;
+        return bestScore > 0.76;
     }
 
     @Override
@@ -78,6 +85,6 @@ public class BillingAgent implements ConversationalAgent {
         String contextText = String.join("\n\n", contextSegments);
         String fullPrompt = "Context:\n" + contextText + "\n\nUser question:\n" + userPrompt;
 
-        return chatModel.chat(sessionId, fullPrompt).content();
+        return billingAssistantModel.chat(sessionId, fullPrompt);
     }
 }
