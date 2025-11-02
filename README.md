@@ -83,7 +83,7 @@ Once the application starts, the following steps happen in order:
 
 ### 6. Multi-Turn Memory Handling
 - [LangChainConfig](src/main/java/com/smartaink/smart_home_assistant/config/LangChainConfig.java) defines a `ChatMemoryProvider` bean that creates a `MessageWindowChatMemory` for each session (`memoryId`) with a maximum of 10 messages stored.
-- [ChatModel](src/main/java/com/smartaink/smart_home_assistant/llm/ChatModel.java) interface handles LLM calls with `memoryId` and the user prompt (`@UserMessage`), ensuring conversation history is preserved across multiple turns.
+- Implemented chat interfaces handles LLM calls with chat method with parameters `memoryId` and the user prompt (`@UserMessage`), ensuring conversation history is preserved across multiple turns.
 - In the frontend ([app.js](src/main/resources/static/js/app.js)), a unique `sessionId` is generated **once per chat session** (e.g., via `crypto.randomUUID()`) when the user opens the chat.
 - It is sent as `memoryId` with each request, ensuring that the conversation history is preserved and tied to the same user session.
 
@@ -122,17 +122,23 @@ You will need these installed:
 - **OpenAI API key** – [Get an API key](https://platform.openai.com/account/api-keys) for LLM functionality
 
 
-Set the API key as an environment variable in application.properties:
+Set the API key using one of the following methods:
 
+**Option 1: Environment Variable (Recommended)**
+Set the `OPENAI_API_KEY` environment variable:
+```bash
+export OPENAI_API_KEY=your-api-key-here  # On Linux/Mac
+set OPENAI_API_KEY=your-api-key-here      # On Windows PowerShell
 ```
-spring.application.name=smart-home-assistant
 
-langchain4j.open-ai.chat-model.api-key= <PASTE IT HERE>
-langchain4j.open-ai.chat-model.model-name=gpt-4o-mini
-langchain4j.open-ai.embedding-model.model-name=text-embedding-3-large
-langchain4j.open-ai.chat-model.temperature=0
+**Option 2: application.properties file**
+Copy `application.properties.example` to `application.properties` and set your API key:
+```bash
+cp src/main/resources/application.properties.example src/main/resources/application.properties
 ```
-This file should be in [resources](src/main/resources).
+Then edit `application.properties` and replace `${OPENAI_API_KEY:}` with your actual API key, or set the environment variable as shown above.
+
+The properties file should be in [resources](src/main/resources).
 
 ## Clone the repo
 ```

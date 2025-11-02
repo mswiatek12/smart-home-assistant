@@ -26,11 +26,11 @@ public class LangChainConfig {
     public TechnicalAssistantModel technicalAssistantModel(
             ChatModel chatModel,
             ChatMemoryProvider chatMemoryProvider,
-            TechnicalTools TechnicalToolsImpl
+            TechnicalTools technicalToolsImpl
     ) {
         return AiServices.builder(TechnicalAssistantModel.class)
                 .chatModel(chatModel)
-                .tools(TechnicalToolsImpl)
+                .tools(technicalToolsImpl)
                 .chatMemoryProvider(chatMemoryProvider)
                 .build();
     }
