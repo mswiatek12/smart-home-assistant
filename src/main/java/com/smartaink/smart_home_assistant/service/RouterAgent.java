@@ -15,7 +15,6 @@ import java.util.List;
 @Service
 public class RouterAgent {
 
-    @Autowired
     private RouterAssistantModel routerAssistantModel;
 
     private List<ConversationalAgent> agents;
@@ -32,8 +31,8 @@ public class RouterAgent {
             User question: 
             """;
 
-    public RouterAgent(RouterAssistantModel routerAssistantssistantModel, List<ConversationalAgent> agents) {
 
+    public RouterAgent(RouterAssistantModel routerAssistantModel, List<ConversationalAgent> agents) {
         this.routerAssistantModel = routerAssistantModel;
         this.agents = agents;
     }
@@ -58,7 +57,7 @@ public class RouterAgent {
                 }
             }
         } catch (Exception e) {
-            System.out.println("ERR couldn't parse JSON");
+            System.out.println("ERR couldn't parse JSON :-( ");
         }
 
         String fallbackPrompt = "Context: You are an agent router. " +

@@ -28,8 +28,6 @@ Total Time: Customers should expect the full refund process to take between 8 an
 
 To ensure accurate and timely processing, customers must submit a refund request by providing:
 
-The associated Customer ID or email address.
-
 The Transaction ID or date of the charge being disputed.
 
 A brief summary of the Reason for Cancellation/Refund.

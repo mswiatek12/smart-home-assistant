@@ -1,12 +1,43 @@
 # Hello! :bowtie:
-### Dear recruiter,
+
+### Dear Recruiter,
+
+As discussed during our meeting, one of the main requirements was to **implement a proper LLM tool-calling mechanism**.  
+I have updated my implementation accordingly — making sure the system demonstrates how agents can effectively use tools through LLMs.  
+
+### List of Changes
+- Implemented **tool-calling** support across agents.
+  > Added a dedicated **tools** module with mock implementations.  
+  > The internal logic of these methods isn’t crucial — the goal was to clearly demonstrate the mechanism of tool invocation.  
+  > Real database or API calls can be added later if needed.
+- Each **Agent** now has its own chat model implementation. Why?
+    >For example, the Technical Agent uses a model configured with its specific toolbox (the tool schema is included in the request JSON sent to the OpenAI API).
+
+
+- **Example usage (Billing Agent):**  
+  The assistant can be asked to list all invoices.  
+  Once the list is retrieved (currently mocked as a hardcoded response), an invoice ID can be used to request more detailed information about a specific invoice.
+  > This task is handled by the **Billing Agent**, which is equipped with tools for invoice retrieval, refund templates, and payment-related operations.
+
+- **Example usage (Technical Agent):**  
+  The assistant can be asked to set the thermostat temperature to a desired value.  
+  *(This functionality is currently mocked — in the future, a boundary check such as `14 < desiredTemp < 30` could be added before applying the change.)*
+  > The **Technical Agent** uses tools related to device control, diagnostics, and configuration management.
+  
+- Updated **Router logic** — now it calls the LLM to decide which agent should respond (as discussed).
+- Router did not get any toolbox. It should not call any tools - just pick an agent.
+- Reworked **LLM configuration management** — models are now configured manually.
+  > Optionally, this could also be reflected directly in the `@AiService` annotation (similar to how the Router’s chat model interface works).
+---
+
+### Intro
 This repository contains my implementation for a coding task. I decided that the requirements could be best fulfilled by implementing a system of smart home devices, so I designed and developed a Smart Home Assistant that manages a Smart Doorlock and a Smart Thermostat.
 
 The assistant consists of two collaborating agents:
 
-- **Agent A (Technical Specialist):** Answers technical questions using documentation for each device, including user manuals, troubleshooting notes, and integration guides. The agent only provides answers backed by these documents, asking for clarification if the information is not available.
+- **Agent A (Technical Specialist):** Answers technical questions using documentation or toolbox for each device, including user manuals, troubleshooting notes, and integration guides. The agent only provides answers backed by these sources, asking for clarification if the information is not available.
 
-- **Agent B (Billing Specialist):** Handles billing-related queries, with capabilities such as explaining access to invoices, receipts, and statements, outlining the refund policy, sending refund templates, and providing tips for submitting refund requests.
+- **Agent B (Billing Specialist):** Handles billing-related queries, with capabilities such as giving access to invoices, explaining access to receipts, and statements, outlining the refund policy, sending refund templates and submitting filled sent templates generating an ID for a form. Agent can also provide tips for submitting refund requests.
 
 When a user sends a message, the system automatically routes it to the most appropriate agent, ensuring the response comes from the agent best suited for the query.
 
@@ -32,34 +63,37 @@ Once the application starts, the following steps happen in order:
 - This process runs in a background thread using the OpenAI embedding model (`text-embedding-3-large`).
 - Separate **vector stores** are created for Technical Agent (Agent A) and Billing Agent (Agent B), storing the embeddings for semantic search.
 
-### 3. Prompt Handling / Agent Routing
+### 3. Toolbox Wiring
+- Each agent has its own **toolbox**, containing tools relevant to its responsibilities.
+- The **Technical Agent’s toolbox** includes utilities for device data lookup, diagnostics and more...
+- The **Billing Agent’s toolbox** includes tools for retrieving invoice data, refund templates and more...
+- Toolboxes are **initialized automatically at application startup**, when Spring creates and wires all beans.
+  > Each LLM instance receives only the tools defined for its respective agent, ensuring clear separation of responsibilities.
+### 4. Prompt Handling / Agent Routing
 - The application is ready to accept user prompts through the UI.
 - Each prompt triggers a **POST request** to the controller ([ChatController](src/main/java/com/smartaink/smart_home_assistant/controller/ChatController.java)), which passes it to [ChatService](src/main/java/com/smartaink/smart_home_assistant/service/ChatService.java).
 - [RouterAgent](src/main/java/com/smartaink/smart_home_assistant/service/RouterAgent.java) evaluates which agent should handle the query by comparing the prompt embedding with each agent’s vector store using **cosine similarity**.
 - If no agent is considered suitable, the system requests clarification from the user.
 
-### 4. Agent Response Generation
+### 5. Agent Response Generation
 - Once the appropriate agent is chosen, it retrieves the most relevant **document segments** from its vector store.
 - These segments are converted back into text (retrieval after semantic search) and combined with the user’s prompt as context for the LLM by an agent.
 - The agent calls the **LLM** (OpenAI `gpt-4o-mini`) with this context to generate a response.
 
 
-### 5. Multi-Turn Memory Handling
+### 6. Multi-Turn Memory Handling
 - [LangChainConfig](src/main/java/com/smartaink/smart_home_assistant/config/LangChainConfig.java) defines a `ChatMemoryProvider` bean that creates a `MessageWindowChatMemory` for each session (`memoryId`) with a maximum of 10 messages stored.
 - [ChatModel](src/main/java/com/smartaink/smart_home_assistant/llm/ChatModel.java) interface handles LLM calls with `memoryId` and the user prompt (`@UserMessage`), ensuring conversation history is preserved across multiple turns.
 - In the frontend ([app.js](src/main/resources/static/js/app.js)), a unique `sessionId` is generated **once per chat session** (e.g., via `crypto.randomUUID()`) when the user opens the chat.
 - It is sent as `memoryId` with each request, ensuring that the conversation history is preserved and tied to the same user session.
 
-### 6. Response Delivery
+### 7. Response Delivery
 - The generated answer is returned via the API to the UI and displayed in the chat window.
 - Multi-turn conversations are supported, with session-specific memory maintained for context-aware responses.
 
 ---
 
 This architecture ensures that the assistant provides accurate, context-aware answers, dynamically selecting the most suitable agent for each user query while maintaining conversation history per session.
-
-# Diagram
-![img_1.png](assets/flowDiagram.png)
 
 # Screenshot from App
 ![img.png](assets/appScreenshot.png)
@@ -107,8 +141,13 @@ cd smart-home-assistant
 ```
 
 ## Build & Run the Application
+On Windows:
 ```
 .\gradlew build && .\gradlew bootRun
+```
+On Linux:
+```
+gradle build && gradle bootRun
 ```
 The application will run by default at http://localhost:8080
 

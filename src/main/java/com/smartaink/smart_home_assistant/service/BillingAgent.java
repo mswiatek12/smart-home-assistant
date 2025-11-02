@@ -19,9 +19,10 @@ import java.util.List;
 @Service
 public class BillingAgent implements ConversationalAgent {
 
-    @Autowired
     private final BillingAssistantModel billingAssistantModel;
+
     private final EmbeddingService embeddingService;
+
 
     public BillingAgent(BillingAssistantModel billingAssistantModel, EmbeddingService embeddingService) {
         this.billingAssistantModel = billingAssistantModel;
@@ -31,33 +32,6 @@ public class BillingAgent implements ConversationalAgent {
     @Override
     public String getName() {
         return "BillingAgent";
-    }
-
-    @Override
-    public boolean canHelp(String userPrompt) {
-        EmbeddingModel embeddingModel = embeddingService.getEmbeddingModel();
-        Embedding embeddedQuery = embeddingModel.embed(userPrompt).content();
-
-        EmbeddingSearchRequest request = EmbeddingSearchRequest.builder()
-                .queryEmbedding(embeddedQuery)
-                .maxResults(3)
-                .build();
-
-        double bestScore = 0.0;
-
-        for(EmbeddingStore<TextSegment> vstore : embeddingService.getBillingEmbeddingStores()) {
-            EmbeddingSearchResult<TextSegment> result = vstore.search(request);
-
-            if(!result.matches().isEmpty()) {
-                double score = result.matches().get(0).score();
-                if(score > bestScore)
-                {
-                    bestScore = score;
-                }
-            }
-        }
-
-        return bestScore > 0.76;
     }
 
     @Override
@@ -87,4 +61,32 @@ public class BillingAgent implements ConversationalAgent {
 
         return billingAssistantModel.chat(sessionId, fullPrompt);
     }
+
+    //ROUTING LOGIC CHANGED
+//    @Override
+//    public boolean canHelp(String userPrompt) {
+//        EmbeddingModel embeddingModel = embeddingService.getEmbeddingModel();
+//        Embedding embeddedQuery = embeddingModel.embed(userPrompt).content();
+//
+//        EmbeddingSearchRequest request = EmbeddingSearchRequest.builder()
+//                .queryEmbedding(embeddedQuery)
+//                .maxResults(3)
+//                .build();
+//
+//        double bestScore = 0.0;
+//
+//        for(EmbeddingStore<TextSegment> vstore : embeddingService.getBillingEmbeddingStores()) {
+//            EmbeddingSearchResult<TextSegment> result = vstore.search(request);
+//
+//            if(!result.matches().isEmpty()) {
+//                double score = result.matches().get(0).score();
+//                if(score > bestScore)
+//                {
+//                    bestScore = score;
+//                }
+//            }
+//        }
+//
+//        return bestScore > 0.76;
+//    }
 }

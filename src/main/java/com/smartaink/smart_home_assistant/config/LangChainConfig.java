@@ -15,11 +15,19 @@ import org.springframework.context.annotation.Configuration;
 public class LangChainConfig {
 
     @Bean
+    public ChatMemoryProvider chatMemoryProvider() {
+        return memoryId -> MessageWindowChatMemory.builder()
+                .id(memoryId)
+                .maxMessages(10)
+                .build();
+    }
+
+    @Bean
     public TechnicalAssistantModel technicalAssistantModel(
             ChatModel chatModel,
             ChatMemoryProvider chatMemoryProvider,
             TechnicalTools TechnicalToolsImpl
-    ){
+    ) {
         return AiServices.builder(TechnicalAssistantModel.class)
                 .chatModel(chatModel)
                 .tools(TechnicalToolsImpl)
@@ -32,19 +40,11 @@ public class LangChainConfig {
          ChatModel chatModel,
          ChatMemoryProvider chatMemoryProvider,
          BillingTools billingToolsImpl
-    ){
+    ) {
         return AiServices.builder(BillingAssistantModel.class)
                 .chatModel(chatModel)
                 .tools(billingToolsImpl)
                 .chatMemoryProvider(chatMemoryProvider)
-                .build();
-    }
-
-    @Bean
-    public ChatMemoryProvider chatMemoryProvider() {
-        return memoryId -> MessageWindowChatMemory.builder()
-                .id(memoryId)
-                .maxMessages(10)
                 .build();
     }
 }

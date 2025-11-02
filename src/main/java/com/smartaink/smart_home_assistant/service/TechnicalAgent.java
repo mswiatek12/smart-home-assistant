@@ -18,9 +18,10 @@ import java.util.List;
 @Service
 public class TechnicalAgent implements ConversationalAgent{
 
-    @Autowired
     private final TechnicalAssistantModel technicalAssistantModel;
+
     private final EmbeddingService embeddingService;
+
 
     public TechnicalAgent(TechnicalAssistantModel technicalAssistantModel, EmbeddingService embeddingService) {
         this.technicalAssistantModel = technicalAssistantModel;
@@ -30,33 +31,6 @@ public class TechnicalAgent implements ConversationalAgent{
     @Override
     public String getName() {
         return "TechnicalAgent";
-    }
-
-    @Override
-    public boolean canHelp(String userPrompt) {
-        EmbeddingModel embeddingModel = embeddingService.getEmbeddingModel();
-        Embedding embeddedQuery = embeddingModel.embed(userPrompt).content();
-
-        EmbeddingSearchRequest request = EmbeddingSearchRequest.builder()
-                .queryEmbedding(embeddedQuery)
-                .maxResults(3)
-                .build();
-
-        double bestScore = 0.0;
-
-        for(EmbeddingStore<TextSegment> vstore : embeddingService.getTechnicalEmbeddingStores()) {
-            EmbeddingSearchResult<TextSegment> result = vstore.search(request);
-
-            if(!result.matches().isEmpty()) {
-                double score = result.matches().get(0).score();
-                if(score > bestScore)
-                {
-                    bestScore = score;
-                }
-            }
-        }
-
-        return bestScore > 0.76;
     }
 
     @Override
@@ -86,4 +60,32 @@ public class TechnicalAgent implements ConversationalAgent{
 
         return technicalAssistantModel.chat(sessionId, fullPrompt);
     }
+
+    //ROUTING LOGIC CHANGED
+//    @Override
+//    public boolean canHelp(String userPrompt) {
+//        EmbeddingModel embeddingModel = embeddingService.getEmbeddingModel();
+//        Embedding embeddedQuery = embeddingModel.embed(userPrompt).content();
+//
+//        EmbeddingSearchRequest request = EmbeddingSearchRequest.builder()
+//                .queryEmbedding(embeddedQuery)
+//                .maxResults(3)
+//                .build();
+//
+//        double bestScore = 0.0;
+//
+//        for(EmbeddingStore<TextSegment> vstore : embeddingService.getTechnicalEmbeddingStores()) {
+//            EmbeddingSearchResult<TextSegment> result = vstore.search(request);
+//
+//            if(!result.matches().isEmpty()) {
+//                double score = result.matches().get(0).score();
+//                if(score > bestScore)
+//                {
+//                    bestScore = score;
+//                }
+//            }
+//        }
+//
+//        return bestScore > 0.76;
+//    }
 }
