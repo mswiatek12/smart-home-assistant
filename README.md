@@ -2,7 +2,7 @@
 
 ### Dear Recruiter,
 
-As discussed during our meeting, one of the main requirements was to **implement a proper LLM tool-calling mechanism**.  
+As discussed the goal was to **implement a proper LLM tool-calling mechanism**.  
 I have updated my implementation accordingly — making sure the system demonstrates how agents can effectively use tools through LLMs.  
 
 ### List of Changes
