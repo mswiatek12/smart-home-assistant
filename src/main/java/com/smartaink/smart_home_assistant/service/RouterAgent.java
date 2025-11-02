@@ -61,7 +61,7 @@ public class RouterAgent {
         }
 
         String fallbackPrompt = "Context: You are an agent router. " +
-                "The given information was not enough. Ask for a more detailed message or call a tool. " +
+                "The given information was not enough. Ask for a more detailed message. " +
                 "userPrompt: " + userPrompt;
 
         return routerAssistantModel.chat(sessionId, fallbackPrompt).content();
