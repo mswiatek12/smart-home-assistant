@@ -122,23 +122,17 @@ You will need these installed:
 - **OpenAI API key** – [Get an API key](https://platform.openai.com/account/api-keys) for LLM functionality
 
 
-Set the API key using one of the following methods:
+Set the API key as an environment variable in application.properties:
 
-**Option 1: Environment Variable (Recommended)**
-Set the `OPENAI_API_KEY` environment variable:
-```bash
-export OPENAI_API_KEY=your-api-key-here  # On Linux/Mac
-set OPENAI_API_KEY=your-api-key-here      # On Windows PowerShell
 ```
+spring.application.name=smart-home-assistant
 
-**Option 2: application.properties file**
-Copy `application.properties.example` to `application.properties` and set your API key:
-```bash
-cp src/main/resources/application.properties.example src/main/resources/application.properties
+langchain4j.open-ai.chat-model.api-key= <PASTE IT HERE>
+langchain4j.open-ai.chat-model.model-name=gpt-4o-mini
+langchain4j.open-ai.embedding-model.model-name=text-embedding-3-large
+langchain4j.open-ai.chat-model.temperature=0
 ```
-Then edit `application.properties` and replace `${OPENAI_API_KEY:}` with your actual API key, or set the environment variable as shown above.
-
-The properties file should be in [resources](src/main/resources).
+This file should be in [resources](src/main/resources).
 
 ## Clone the repo
 ```
