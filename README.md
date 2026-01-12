@@ -1,38 +1,5 @@
-# Hello! :bowtie:
-
-### Dear Recruiter,
-
-As discussed the goal was to **implement a proper LLM tool-calling mechanism**.  
-I have updated my implementation accordingly — making sure the system demonstrates how agents can effectively use tools through LLMs.  
-
-### List of Changes
-- Implemented **tool-calling** support across agents.
-  > Added a dedicated **tools** module with mock implementations.  
-  > The internal logic of these methods isn’t crucial — the goal was to clearly demonstrate the mechanism of tool invocation.  
-  > Real database or API calls can be added later if needed.
-- Each **Agent** now has its own chat model implementation. Why?
-    >For example, the Technical Agent uses a model configured with its specific toolbox (the tool schema is included in the request JSON sent to the OpenAI API).
-
-
-- **Example usage (Billing Agent):**  
-  The assistant can be asked to list all invoices.  
-  Once the list is retrieved (currently mocked as a hardcoded response), an invoice ID can be used to request more detailed information about a specific invoice.
-  > This task is handled by the **Billing Agent**, which is equipped with tools for invoice retrieval, refund templates, and payment-related operations.
-
-- **Example usage (Technical Agent):**  
-  The assistant can be asked to set the thermostat temperature to a desired value.  
-  *(This functionality is currently mocked — in the future, a boundary check such as `14 < desiredTemp < 30` could be added before applying the change.)*
-  > The **Technical Agent** uses tools related to device control, diagnostics, and configuration management.
-  
-- Updated **Router logic** — now it calls the LLM to decide which agent should respond (as discussed).
-- Router did not get any toolbox. It should not call any tools - just pick an agent.
-- Reworked **LLM configuration management** — models are now configured manually.
-  > Optionally, this could also be reflected directly in the `@AiService` annotation (similar to how the Router’s chat model interface works).
----
-
-### Intro
-This repository contains my implementation for a coding task. I decided that the requirements could be best fulfilled by implementing a system of smart home devices, so I designed and developed a Smart Home Assistant that manages a Smart Doorlock and a Smart Thermostat.
-
+# Smart Home Assistant
+Smart Home Assistant is an AI-powered system designed to manage and support smart home devices, specifically focusing on Smart Doorlocks and Smart Thermostats. The assistant uses a multi-agent architecture to provide both technical device control and billing support through natural language processing.
 The assistant consists of two collaborating agents:
 
 - **Agent A (Technical Specialist):** Answers technical questions using documentation or toolbox for each device, including user manuals, troubleshooting notes, and integration guides. The agent only provides answers backed by these sources, asking for clarification if the information is not available.
@@ -42,13 +9,6 @@ The assistant consists of two collaborating agents:
 When a user sends a message, the system automatically routes it to the most appropriate agent, ensuring the response comes from the agent best suited for the query.
 
 More detailed technical information and architectural decisions can be found in the **System Overview** section below.
-
-### :warning: Disclaimer
-
-This implementation focuses on demonstrating the core functionality and mechanisms required by the assignment in a clean and transparent way.
-The documentation for Smart Doorbell and Smart Thermostat was generated with ChatGPT-5 to simulate realistic device manuals and troubleshooting materials.
-For this project, I chose **not to use a database**. The focus was on implementing the **core functionality and proper mechanisms**.
-Persistent storage of vectors or session IDs was **not considered essential for fulfilling the assignment requirements**, but it would be a natural next step for building the application and improving scalability.
 
 # System Overview
 
